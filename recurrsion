@@ -1,0 +1,80 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""Assignment 14: Implementing recursive algorithms."""
+
+
+def fibonacci(n):
+    """
+    Calculate  nth number in the sequence recursively.
+    
+    Args:
+        n (int): The position in the Fibonacci sequence to calculate
+        
+    Returns:
+        int: The nth number in the Fibonacci sequence
+        
+    Raises:
+        ValueError: If n is negative
+    """
+    if n < 0:
+        raise ValueError("Fibonacci sequence not defined for negative numbers")
+    if n <= 1:  # Base case: F(0) = 0, F(1) = 1
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+
+def gcd(a, b):
+    """
+    Calculate the Greatest Common Divisor of two numbers using Euclid's algorithm.
+    
+    Args:
+        a (int): First number
+        b (int): Second number
+        
+    Returns:
+        int: The greatest common divisor of a and b
+    """
+    if b == 0:  # Base case: GCD(a,0) = a
+        return abs(a)
+    return gcd(b, a % b)
+
+
+def compareTo(s1, s2):
+    """
+    Compare two strings recursively.
+    
+    Args:
+        s1 (str): First string
+        s2 (str): Second string
+        
+    Returns:
+        int: Negative if s1 < s2, 0 if s1 == s2, positive if s1 > s2
+    """
+    # Base cases
+    if not s1 and not s2:  # Both strings are empty
+        return 0
+    if not s1:  # s1 is empty, s2 is not
+        return -1
+    if not s2:  # s2 is empty, s1 is not
+        return 1
+    
+    # Compare first characters
+    if s1[0] != s2[0]:
+        return ord(s1[0]) - ord(s2[0])
+    
+    return compareTo(s1[1:], s2[1:])
+
+if __name__ == "__main__":
+    # Test cases
+    print("Testing fibonacci:")
+    for i in range(10):
+        print(f"F({i}) = {fibonacci(i)}")
+    
+    print("\nTesting GCD:")
+    print(f"GCD(48,18) = {gcd(48,18)}")
+    print(f"GCD(54,24) = {gcd(54,24)}")
+    
+    print("\nTesting string comparison:")
+    print(f"'hello' vs 'hello': {compareTo('hello', 'hello')}")
+    print(f"'hello' vs 'world': {compareTo('hello', 'world')}")
+    print(f"'world' vs 'hello': {compareTo('world', 'hello')}")
