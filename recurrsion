@@ -78,3 +78,4 @@ if __name__ == "__main__":
     print(f"'hello' vs 'hello': {compareTo('hello', 'hello')}")
     print(f"'hello' vs 'world': {compareTo('hello', 'world')}")
     print(f"'world' vs 'hello': {compareTo('world', 'hello')}")
+
